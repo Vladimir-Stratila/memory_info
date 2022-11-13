@@ -19,14 +19,14 @@ class MethodChannelMemoryInfo extends MemoryInfoPlatform {
   @override
   Future<DiskSpace> diskSpace() async {
     return DiskSpace.fromMap(
-      (await channel.invokeMethod('getDiskSpace')).cast<String, dynamic>(),
+      (await methodChannel.invokeMethod('getDiskSpace')).cast<String, dynamic>(),
     );
   }
 
   @override
   Future<Memory> memoryInfo() async {
     return Memory.fromMap(
-      (await channel.invokeMethod('getMemoryInfo')).cast<String, dynamic>(),
+      (await methodChannel.invokeMethod('getMemoryInfo')).cast<String, dynamic>(),
     );
   }
 }
