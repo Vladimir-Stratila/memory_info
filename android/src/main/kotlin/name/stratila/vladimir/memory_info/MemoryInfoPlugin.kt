@@ -11,8 +11,6 @@ import io.flutter.plugin.common.MethodChannel.Result
 /** MemoryInfoPlugin */
 class MemoryInfoPlugin: FlutterPlugin, MethodCallHandler {
   private lateinit var channel : MethodChannel
-
-  private lateinit var channel: MethodChannel
   private var applicationContext: Context? = null
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
