@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:memory_info/disk_space.dart';
+import 'package:memory_info/memory.dart';
 import 'package:memory_info/memory_info.dart';
 
 void main() {
@@ -36,7 +38,7 @@ class _MyAppState extends State<MyApp> {
     // We also handle the message potentially returning null.
     try {
       platformVersion =
-          await _memoryInfoPlugin.getPlatformVersion() ?? 'Unknown platform version';
+          await _memoryInfoPlugin.platformVersion ?? 'Unknown platform version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -69,26 +71,27 @@ class _MyAppState extends State<MyApp> {
     // setState to update our non-existent appearance.
     if (!mounted) return;
 
-    if (memory != null || diskSpace != null)
+    if (memory != null || diskSpace != null) {
       setState(() {
         _memory = memory;
         _diskSpace = diskSpace;
       });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    JsonEncoder encoder = new JsonEncoder.withIndent('  ');
+    JsonEncoder encoder = const JsonEncoder.withIndent('  ');
     String memInfo = encoder.convert(_memory?.toMap());
     String diskInfo = encoder.convert(_diskSpace?.toMap());
     return MaterialApp(
       home: Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: getMemoryInfo,
-          child: Icon(Icons.update),
+          child: const Icon(Icons.update),
         ),
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Memory Info Plugin example app'),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -97,17 +100,17 @@ class _MyAppState extends State<MyApp> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Running on: $_platformVersion\n'),
-              Text(
+              const Text(
                 'MemInfo:\n',
                 style: TextStyle(fontWeight: FontWeight.w800),
               ),
-              Text('$memInfo'),
-              Text('\n--------------------------------------------\n'),
-              Text(
+              Text(memInfo),
+              const Text('\n--------------------------------------------\n'),
+              const Text(
                 'DiskInfo:\n',
                 style: TextStyle(fontWeight: FontWeight.w800),
               ),
-              Text('$diskInfo')
+              Text(diskInfo)
             ],
           ),
         ),
