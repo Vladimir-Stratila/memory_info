@@ -6,7 +6,7 @@ class MemoryInfoPlugin {
 
   static MemoryInfoPlatform get _platform => MemoryInfoPlatform.instance;
 
-  Future<String?> get platformVersion() => _platform.getPlatformVersion();
+  Future<String?> get platformVersion => _platform.platformVersion();
   Future<DiskSpace> get diskSpace => _platform.diskSpace();
   Future<Memory> get memoryInfo => _platform.memoryInfo();
 }
