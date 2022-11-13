@@ -1,4 +1,5 @@
-
+import 'memory.dart';
+import 'disk_space.dart';
 import 'memory_info_platform_interface.dart';
 
 class MemoryInfoPlugin {
