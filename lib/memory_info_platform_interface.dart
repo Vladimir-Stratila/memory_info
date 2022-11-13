@@ -1,5 +1,6 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-
+import 'memory.dart';
+import 'disk_space.dart';
 import 'memory_info_method_channel.dart';
 
 abstract class MemoryInfoPlatform extends PlatformInterface {
